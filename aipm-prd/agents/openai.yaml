@@ -1,0 +1,6 @@
+interface:
+  display_name: "AI PM PRD"
+  short_description: "Draft and review AI product PRDs"
+  default_prompt: "Use $aipm-prd to draft a complete PRD for an AI product idea."
+policy:
+  allow_implicit_invocation: true
