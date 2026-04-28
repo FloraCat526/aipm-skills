@@ -1,0 +1,6 @@
+interface:
+  display_name: "AI PM Thinking"
+  short_description: "Choose frameworks for structured thinking"
+  default_prompt: "Use $aipm-thinking to help me reason through this product or business problem with the right framework."
+policy:
+  allow_implicit_invocation: true
