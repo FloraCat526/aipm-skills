@@ -2,6 +2,35 @@
 
 Use this reference when creating a full AI product PRD. Keep only sections relevant to the actual product; explicitly mark omitted sections as "不适用" with a reason when the omission could affect delivery.
 
+Truthfulness rule: do not invent facts. If a value, model, competitor, metric, cost, date, or compliance requirement is unknown, first ask the user a question to resolve it. Only mark it as `待确认` or put it under `待确认问题` when the user asks for a draft before the answer is known. Use `假设` only when a working assumption is necessary and clearly label it as such.
+
+## Interview Questions
+
+Use these questions before writing the full PRD. Ask only the questions relevant to the user's request and keep each round short.
+
+### Round 1: Scope And Value
+
+- 目标用户是谁？他们现在用什么方式完成这个任务？
+- MVP 首期必须解决哪 1-3 个核心场景？
+- 这次产品要提升哪个业务指标或用户行为？
+- 哪些能力明确不在首期范围内？
+
+### Round 2: AI, Data, And Compliance
+
+- AI 的输入是什么：用户文本、文件、图片、音频、数据库、第三方 API，还是以上组合？
+- 是否已有候选模型、供应商或部署方式？如果没有，PRD 是否只定义选型流程？
+- 是否有隐私、版权、数据出境、行业合规或内容安全要求？
+- 是否有可用的知识库、样例数据、线上日志或评测集？
+
+### Round 3: Quality, Cost, And Launch
+
+- 什么样的输出算“可用”：人工采纳率、准确率、格式通过率、用户满意度，还是其他指标？
+- 是否已有延迟、QPS、可用性、成本预算或 SLA 目标？
+- 上线方式是什么：内部测试、小流量灰度、A/B Test，还是直接全量？
+- 失败时需要怎样回滚或降级？
+
+If the user cannot answer, put those unanswered items in `0.1 Confirmed Facts, Assumptions, And Open Questions` and keep related table cells as `待确认`.
+
 ## 0. Document Header
 
 - Title: 大模型产品的需求文档（PRD）
@@ -12,7 +41,17 @@ Revision table:
 
 | 更新记录 | 修改人 | 修改时间 |
 | --- | --- | --- |
-| 更新内容标红 | XXX | YYYY-MM-DD |
+| 初版/修订内容（待确认） | 待确认 | 待确认 |
+
+## 0.1 Confirmed Facts, Assumptions, And Open Questions
+
+Use this section near the top so readers know what is real and what still needs validation.
+
+| 类型 | 内容 | 来源/负责人 |
+| --- | --- | --- |
+| 已确认 | 用户已提供的信息 | 用户/项目材料 |
+| 假设 | 为推进初稿而做的工作假设 | PM 待确认 |
+| 待确认 | 会影响范围、成本、合规、模型或上线的问题 | 负责人待确认 |
 
 ## 1. Background
 
@@ -30,7 +69,9 @@ Answer why this scenario must use a large model rather than rules, traditional M
 
 | 竞品名称 | 技术方案 | 模型选型 | 核心差异 | 效果水平 |
 | --- | --- | --- | --- | --- |
-| 竞品A |  |  |  |  |
+| 待确认竞品 | 待确认 | 待确认 | 待调研 | 待评测 |
+
+Do not fill competitor rows with invented products or unverifiable claims. If no competitor research is provided, write the analysis framework and list the research questions instead.
 
 ### 1.4 Product Goals
 
@@ -56,10 +97,10 @@ Performance requirements:
 
 | 指标 | 标准 | 说明 |
 | --- | --- | --- |
-| 首Token延迟 | <= X 秒 | 用户发出请求到看到第一个输出的时间 |
-| 端到端延迟 P95 | <= X 秒 | 95% 请求的完整响应时间 |
-| 并发支持 | >= X QPS | 峰值并发量 |
-| 可用性 | >= 99.X% | 月度服务可用性 |
+| 首Token延迟 | 待确认 | 用户发出请求到看到第一个输出的时间 |
+| 端到端延迟 P95 | 待确认 | 95% 请求的完整响应时间 |
+| 并发支持 | 待确认 | 峰值并发量 |
+| 可用性 | 待确认 | 月度服务可用性 |
 
 Security requirements: user data security, privacy, encryption, access control, data residency, and sensitive output handling.
 
@@ -91,29 +132,34 @@ Model selection is a core AI product decision. Start from small models when vali
 
 | 约束维度 | 要求 | 说明 |
 | --- | --- | --- |
-| 推理成本预算 | <= X 元/千次 | Single-call cost ceiling |
-| 延迟要求 | <= X 秒 | End-to-end response time |
-| 部署方式 | 云端 API / 私有化部署 | Data compliance requirement |
-| 数据合规 | 数据不出境 / 无限制 | Domestic scenarios need special attention |
-| 许可协议 | 商用可用 | Such as Apache 2.0 or MIT |
-| 微调需求 | 需要 / 不需要 | Whether domain fine-tuning or LoRA is required |
+| 推理成本预算 | 待确认 | Single-call cost ceiling |
+| 延迟要求 | 待确认 | End-to-end response time |
+| 部署方式 | 待确认 | Cloud API / private deployment; depends on compliance |
+| 数据合规 | 待确认 | Data residency and privacy constraints |
+| 许可协议 | 待确认 | Commercial availability and license constraints |
+| 微调需求 | 待确认 | Whether domain fine-tuning or LoRA is required |
 
 ### 5.2 Candidate Model Comparison
 
-| 维度 | 模型A | 模型B | 模型C |
+| 维度 | 待确认候选模型1 | 待确认候选模型2 | 待确认候选模型3 |
 | --- | --- | --- | --- |
-| 参数量 |  |  |  |
-| 推理成本 |  |  |  |
-| 延迟表现 |  |  |  |
-| 场景效果 |  |  |  |
-| 许可协议 |  |  |  |
-| 部署复杂度 |  |  |  |
+| 参数量/上下文 | 待确认 | 待确认 | 待确认 |
+| 推理成本 | 待确认 | 待确认 | 待确认 |
+| 延迟表现 | 待实测 | 待实测 | 待实测 |
+| 场景效果 | 待评测 | 待评测 | 待评测 |
+| 许可协议 | 待确认 | 待确认 | 待确认 |
+| 部署复杂度 | 待确认 | 待确认 | 待确认 |
 
-Choose domain-specialized models based on requirement type, such as multimodal, digital human, or text. Compare similar-parameter models through blind tests and periodic validation.
+Choose domain-specialized models based on requirement type, such as multimodal, digital human, or text. Compare similar-parameter models through blind tests and periodic validation. If the user has not provided candidate models or actual evaluation data, do not make a selection; list the selection method and mark the conclusion as pending.
 
 ### 5.3 Selection Conclusion
 
-State the selected primary model, backup model for failover, estimated cost, and rationale. If multiple nodes require model selection, evaluate them together.
+State the selected primary model, backup model for failover, estimated cost, and rationale only when confirmed by evaluation or user-provided constraints. Otherwise write:
+
+- 主模型: 待确认
+- 备用模型: 待确认
+- 成本预估: 待确认，需基于 token 量、调用频次和供应商价格计算
+- 选型前置条件: 候选模型清单、评测集、成本预算、合规要求
 
 ## 6. Prompt Engineering
 
@@ -139,8 +185,8 @@ Prompt is a core deliverable of an AI product and must be documented, versioned,
 
 | 版本 | 变更内容 | 评测集得分 | 上线状态 | 变更日期 |
 | --- | --- | --- | --- | --- |
-| v1.0 | 初始版本 | X分 | 全量 |  |
-| v1.1 | 优化XX场景 | X分 | 灰度10% |  |
+| v1.0 | 初始版本/待确认 | 待评测 | 待确认 | 待确认 |
+| v1.1 | 优化方向待确认 | 待评测 | 待确认 | 待确认 |
 
 Prompt changes must pass evaluation before gray release. Do not release unevaluated prompts directly.
 
@@ -230,9 +276,9 @@ Release gates:
 
 | 阶段 | 达标线 | 说明 |
 | --- | --- | --- |
-| MVP上线 | 总分 >= X, 安全合规 >= 3 | Partial quality issues acceptable |
-| 灰度发布 | 总分 >= X, 安全合规 >= 4 | Known issue list required |
-| 全量上线 | 总分 >= X, 安全合规 = 5 | Zero tolerance for safety |
+| MVP上线 | 待确认 | Partial quality issues acceptable |
+| 灰度发布 | 待确认 | Known issue list required |
+| 全量上线 | 待确认 | Zero tolerance for safety |
 
 ### 8.5 Continuous Maintenance
 
@@ -250,7 +296,7 @@ Define quality controls from model output to user-visible result.
 | 控制手段 | 说明 | 是否采用 |
 | --- | --- | --- |
 | 结构化输出 Schema约束 | Require JSON/XML and validate through schema |  |
-| 输出格式校验 + 自动重试 | Retry when format is invalid, max X times |  |
+| 输出格式校验 + 自动重试 | Retry when format is invalid; max retries 待确认 |  |
 | 后处理过滤 | Sensitive word filtering, length interception, format checks |  |
 | 多次采样选优 | Sample N times, rank/score, choose best result |  |
 | 规则引擎兜底 | When model cannot handle, use rules to give baseline response |  |
@@ -268,21 +314,21 @@ Define quality controls from model output to user-visible result.
 
 | 策略 | 配置 | 说明 |
 | --- | --- | --- |
-| 超时阈值 | X 秒 | Trigger downgrade after timeout |
-| 重试策略 | Max X times, interval X seconds | Exponential backoff to avoid cascading failure |
-| 多模型 Failover | Primary -> backup | Switch automatically when primary is unavailable |
-| 请求限流 | X QPS | Queue when threshold exceeded |
-| 缓存策略 | Similar query cache X minutes | Reduce repeated calls, cost, and latency |
-| 熔断机制 | Error rate > X% | Prevent incident spread |
+| 超时阈值 | 待确认 | Trigger downgrade after timeout |
+| 重试策略 | 待确认 | Exponential backoff to avoid cascading failure |
+| 多模型 Failover | 待确认 | Switch automatically when primary is unavailable |
+| 请求限流 | 待确认 | Queue when threshold exceeded |
+| 缓存策略 | 待确认 | Reduce repeated calls, cost, and latency |
+| 熔断机制 | 待确认 | Prevent incident spread |
 
 ### 9.4 Consistency Assurance
 
 | 策略 | 说明 |
 | --- | --- |
-| Temperature / Top_p 控制 | Set production temperature to X for stable output. For some models, `do_sample=false` means greedy decoding and temperature/top_p are ignored. |
-| Seed固定 | Use fixed seed for reproducible scenarios |
+| Temperature / Top_p 控制 | Target values 待确认; choose based on product need and model/provider behavior. For some models, `do_sample=false` means greedy decoding and temperature/top_p are ignored. |
+| Seed固定 | Use fixed seed for reproducible scenarios when provider supports it |
 | 模型版本锁定 | Lock model version in production and evaluate before upgrade |
-| Prompt变更灰度 | Gray release X% traffic first, observe X days before full rollout |
+| Prompt变更灰度 | Traffic ratio and observation period 待确认 |
 
 ## 10. Prototype
 
@@ -333,10 +379,10 @@ Long-term competitiveness comes from data flywheel: user usage generates data, d
 
 | 监控指标 | 告警阈值 | 响应动作 |
 | --- | --- | --- |
-| 日均负反馈率 | > X% | Trigger bad-case analysis |
-| 模型调用失败率 | > X% | Stability investigation |
-| 平均响应时间 | > X秒 | Performance bottleneck review |
-| 安全拦截率突增 | 环比 > X% | Check for new attack pattern |
+| 日均负反馈率 | 待确认 | Trigger bad-case analysis |
+| 模型调用失败率 | 待确认 | Stability investigation |
+| 平均响应时间 | 待确认 | Performance bottleneck review |
+| 安全拦截率突增 | 待确认 | Check for new attack pattern |
 
 ### 12.3 Data Feedback Loop
 
@@ -354,18 +400,18 @@ Operations:
 
 | 阶段 | 流量比例 | 持续时间 | 观察指标 | 进入下阶段条件 |
 | --- | --- | --- | --- | --- |
-| 内部测试 | Internal users | X days | Availability, visible bugs | No P0/P1 issues |
-| 小流量灰度 | X% | X days | Evaluation score, feedback rate | Release gate met |
-| 扩大灰度 | X% | X days | Stability, cost | No abnormal fluctuation |
+| 内部测试 | Internal users | 待确认 | Availability, visible bugs | No P0/P1 issues |
+| 小流量灰度 | 待确认 | 待确认 | Evaluation score, feedback rate | Release gate met |
+| 扩大灰度 | 待确认 | 待确认 | Stability, cost | No abnormal fluctuation |
 | 全量上线 | 100% | - | Full monitoring metrics | - |
 
 ### 13.2 Cost Monitoring
 
 | 监控项 | 预算 | 告警阈值 |
 | --- | --- | --- |
-| 日均 Token 消耗 | X万 Token | Alert over X% budget |
-| 日均 API 调用次数 | X万次 | Alert over X% budget |
-| 单次请求平均成本 | X元 | Alert over X% budget |
+| 日均 Token 消耗 | 待确认 | 待确认 |
+| 日均 API 调用次数 | 待确认 | 待确认 |
+| 单次请求平均成本 | 待确认 | 待确认 |
 
 ### 13.3 Rollback Plan
 
@@ -375,11 +421,13 @@ Define rollback trigger, rollback steps, and impact assessment when online effec
 
 | 风险类型 | 风险描述 | 概率 | 影响 | 应对策略 |
 | --- | --- | --- | --- | --- |
-| 模型效果风险 | Model effect below target in some scenarios | 中 | 高 | Prepare backup model and baseline solution |
-| 模型服务风险 | API unstable or unavailable | 低 | 高 | Multi-model failover + cache |
-| 安全风险 | Model outputs illegal or sensitive content | 中 | 极高 | Multi-layer filtering + human review + safety eval set |
-| 成本风险 | Actual traffic exceeds expected cost | 中 | 中 | Cost alerts + cache + rate limiting |
-| 合规风险 | Data residency or privacy leak | 低 | 极高 | Data residency architecture + privacy desensitization |
+| 模型效果风险 | Model effect below target in some scenarios | 待评估 | 待评估 | Prepare backup model and baseline solution |
+| 模型服务风险 | API unstable or unavailable | 待评估 | 待评估 | Multi-model failover + cache |
+| 安全风险 | Model outputs illegal or sensitive content | 待评估 | 待评估 | Multi-layer filtering + human review + safety eval set |
+| 成本风险 | Actual traffic exceeds expected cost | 待评估 | 待评估 | Cost alerts + cache + rate limiting |
+| 合规风险 | Data residency or privacy leak | 待评估 | 待评估 | Data residency architecture + privacy desensitization |
+
+Risk probability and impact should be scored by the project team or based on incident/user data. Do not present default risk ratings as verified facts.
 
 ## Appendix
 
